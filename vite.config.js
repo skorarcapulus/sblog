@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import legacy from '@vitejs/plugin-legacy';
+import { resolve } from 'path';
 
 export default defineConfig({
   plugins: [
@@ -7,13 +8,13 @@ export default defineConfig({
       targets: ['defaults', 'not IE 11']
     })
   ],
-  root: 'wp-content',
+  root: 'wp-content/themes/skorar-theme',
   build: {
-    outDir: '../dist',
+    outDir: 'dist',
     rollupOptions: {
       input: {
-        // Add your theme/plugin entry points here
-        // main: 'wp-content/themes/your-theme/assets/main.js',
+        main: 'assets/js/main.js',
+        style: 'assets/css/dev.css' // We'll create this for Vite
       }
     }
   },
@@ -22,6 +23,13 @@ export default defineConfig({
     port: 3000,
     hmr: {
       port: 3000
+    },
+    watch: {
+      // Watch PHP files for changes
+      ignored: ['!**/*.php']
     }
+  },
+  css: {
+    devSourcemap: true
   }
 });

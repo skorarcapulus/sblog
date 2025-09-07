@@ -1,3 +1,8 @@
+# Disclaimer
+This project is my try at seeing how far I can go with using mostly AI within software development. I've worked with WordPress in the past and I am currently working as a fulltime Software Developer. While I find AI to be useful, I also recognize its limitations, especially when it comes to understanding context and complex problem-solving. Since WordPress is one of the most well documented CMS platforms, I thought it would be a good fit for this experiment. I want to solve as little as possible manually, and see how far I can get with AI assistance only.
+
+
+
 # WordPress Development Environment
 
 Modern WordPress development stack with Docker, featuring hot reloading, Redis caching, and optimized development workflow.
