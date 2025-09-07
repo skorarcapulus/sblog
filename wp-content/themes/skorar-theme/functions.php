@@ -26,6 +26,19 @@ function skorar_theme_setup() {
     ]);
     add_theme_support('customize-selective-refresh-widgets');
 
+    // Gutenberg/Block Editor Support
+    add_theme_support('wp-block-styles');
+    add_theme_support('responsive-embeds');
+    add_theme_support('align-wide');
+    add_theme_support('align-full');
+    
+    // Editor styles (will load editor-style.css in admin)
+    add_theme_support('editor-styles');
+    add_editor_style('assets/css/editor-style.css');
+    
+    // Custom block patterns
+    add_theme_support('core-block-patterns');
+
     // Register navigation menu
     register_nav_menus([
         'primary' => __('Primary Menu', 'skorar-theme'),
@@ -131,6 +144,30 @@ function skorar_custom_css() {
     </style>";
 }
 add_action('wp_head', 'skorar_custom_css');
+
+/**
+ * Register Block Patterns
+ */
+function skorar_register_block_patterns() {
+    register_block_pattern_category('skorar', [
+        'label' => __('Skorar Theme', 'skorar-theme'),
+    ]);
+}
+add_action('init', 'skorar_register_block_patterns');
+
+/**
+ * Enqueue block editor assets
+ */
+function skorar_block_editor_assets() {
+    // You can add custom JavaScript for the block editor here
+    wp_enqueue_script(
+        'skorar-block-editor',
+        get_template_directory_uri() . '/assets/js/block-editor.js',
+        ['wp-blocks', 'wp-dom-ready', 'wp-edit-post'],
+        wp_get_theme()->get('Version')
+    );
+}
+add_action('enqueue_block_editor_assets', 'skorar_block_editor_assets');
 
 /**
  * Development helpers

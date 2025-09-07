@@ -121,6 +121,104 @@ body {
   margin-top: auto;
 }
 
+/* Gutenberg Block Styles */
+.wp-block-group,
+.wp-block-cover {
+  margin-bottom: 2rem;
+}
+
+/* Wide and Full Width Alignments */
+.alignwide {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.alignfull {
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+/* Button Blocks */
+.wp-block-button .wp-block-button__link {
+  background-color: #0073aa;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.wp-block-button .wp-block-button__link:hover {
+  background-color: #005a87;
+}
+
+/* Quote Blocks */
+.wp-block-quote {
+  border-left: 4px solid #0073aa;
+  padding-left: 1rem;
+  margin: 2rem 0;
+  font-style: italic;
+}
+
+.wp-block-quote cite {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Image Blocks */
+.wp-block-image {
+  margin: 2rem 0;
+}
+
+.wp-block-image img {
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Column Blocks */
+.wp-block-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.wp-block-column {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Cover Blocks */
+.wp-block-cover {
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Code Blocks */
+.wp-block-code {
+  background: #f8f9fa;
+  border: 1px solid #eee;
+  padding: 1rem;
+  border-radius: 4px;
+  font-family: 'Monaco', 'Menlo', monospace;
+  font-size: 0.9rem;
+}
+
+/* List Blocks */
+.wp-block-list {
+  padding-left: 1.5rem;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .site-header .container {
@@ -134,5 +232,18 @@ body {
   
   .post-title {
     font-size: 1.5rem;
+  }
+  
+  /* Stack columns on mobile */
+  .wp-block-columns {
+    flex-direction: column;
+  }
+  
+  /* Full width adjustments for mobile */
+  .alignfull {
+    margin-left: -20px;
+    margin-right: -20px;
+    width: calc(100% + 40px);
+    max-width: calc(100% + 40px);
   }
 }
