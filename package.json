@@ -1,0 +1,19 @@
+{
+  "name": "wp-theme-assets",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"vite\" \"npm run watch:php\"",
+    "build": "vite build",
+    "preview": "vite preview",
+    "watch:php": "nodemon --watch wp-content/themes --watch wp-content/plugins --ext php,js,css --exec echo 'Files changed, browser will reload...'"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-legacy": "^5.4.2",
+    "concurrently": "^9.0.1",
+    "nodemon": "^3.1.7",
+    "sass": "^1.79.4",
+    "vite": "^5.4.8"
+  },
+  "dependencies": {}
+}

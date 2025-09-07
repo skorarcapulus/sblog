@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  wp:
+    environment:
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_DEBUG', true);
+        define('WP_DEBUG_LOG', true);
+        define('WP_DEBUG_DISPLAY', true);
+        define('WP_ENVIRONMENT_TYPE', 'development');
+        define('SCRIPT_DEBUG', true);
+        define('SAVEQUERIES', true);
+
+  # Enable all development services
+  node:
+    profiles: []  # Remove profile to always start in dev
+
+  redis:
+    ports:
+      - "6379:6379"  # Expose Redis for external tools
