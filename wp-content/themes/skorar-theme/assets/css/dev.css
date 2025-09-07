@@ -1,0 +1,45 @@
+/**
+ * Development CSS - Hot reloaded by Vite
+ * This file is for development only and gets compiled
+ */
+
+/* Import main theme styles */
+@import '../../style.css';
+
+/* Development-only styles */
+body.debug-mode::before {
+  content: '🔧 DEV MODE';
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: #ff6b6b;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  z-index: 9999;
+  font-weight: bold;
+}
+
+/* Hot reload indicator */
+.vite-dev-indicator {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #646cff;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  z-index: 9999;
+}
+
+/* Theme development helpers */
+.post {
+  transition: all 0.3s ease;
+}
+
+.post:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
