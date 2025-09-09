@@ -1,0 +1,414 @@
+/**
+ * WordPress Admin Dark Theme
+ * Makes the entire WordPress admin panel match the frontend theme
+ */
+
+/* CSS Variables for Admin Theme */
+:root {
+    --skorar-primary: #ff014f;
+    --skorar-secondary: #FFDC60;
+    --skorar-tertiary: #FAB8C4;
+    --skorar-base-dark: #212428;
+    --skorar-header-dark: #1F2125;
+    --skorar-dark-secondary: #27272E;
+    --skorar-text-default: #C4CFDE;
+    --skorar-white: #ffffff;
+    --skorar-light-gray: #abb8c3;
+}
+
+/* Overall Admin Background */
+body,
+#wpwrap,
+#wpcontent,
+#wpfooter {
+    background-color: var(--skorar-base-dark) !important;
+    color: var(--skorar-text-default) !important;
+}
+
+/* Admin Menu (Left Sidebar) */
+#adminmenu,
+#adminmenu .wp-submenu,
+#adminmenuback,
+#adminmenuwrap {
+    background: var(--skorar-header-dark) !important;
+}
+
+#adminmenu a {
+    color: var(--skorar-light-gray) !important;
+}
+
+#adminmenu li.current a,
+#adminmenu li.wp-has-current-submenu a.wp-has-current-submenu,
+#adminmenu .wp-has-current-submenu .wp-submenu a {
+    background-color: var(--skorar-dark-secondary) !important;
+    color: var(--skorar-white) !important;
+}
+
+#adminmenu li a:hover,
+#adminmenu li.opensub > a,
+#adminmenu li > a:focus {
+    background-color: var(--skorar-primary) !important;
+    color: var(--skorar-white) !important;
+}
+
+#adminmenu .wp-submenu a:hover {
+    background-color: var(--skorar-primary) !important;
+    color: var(--skorar-white) !important;
+}
+
+/* Current menu item */
+#adminmenu .current,
+#adminmenu .wp-has-current-submenu .wp-submenu li.current a {
+    background-color: var(--skorar-primary) !important;
+    color: var(--skorar-white) !important;
+}
+
+/* Admin Bar (Top Bar) */
+#wpadminbar {
+    background: var(--skorar-header-dark) !important;
+    color: var(--skorar-text-default) !important;
+}
+
+#wpadminbar a,
+#wpadminbar span {
+    color: var(--skorar-light-gray) !important;
+}
+
+#wpadminbar .ab-item:hover,
+#wpadminbar .ab-top-menu > li:hover > .ab-item {
+    background-color: var(--skorar-primary) !important;
+    color: var(--skorar-white) !important;
+}
+
+#wpadminbar .ab-top-secondary .ab-top-menu > li:hover > .ab-item {
+    background-color: var(--skorar-primary) !important;
+}
+
+/* Main Content Area */
+.wrap {
+    background-color: var(--skorar-base-dark) !important;
+    color: var(--skorar-text-default) !important;
+}
+
+.wrap h1,
+.wrap h2,
+.wrap h3 {
+    color: var(--skorar-white) !important;
+}
+
+/* Post Editor Screen */
+#poststuff {
+    background-color: var(--skorar-base-dark) !important;
+}
+
+#post-body,
+#post-body-content {
+    background-color: var(--skorar-base-dark) !important;
+}
+
+/* Meta Boxes */
+.postbox,
+.stuffbox {
+    background-color: var(--skorar-header-dark) !important;
+    border: 1px solid var(--skorar-dark-secondary) !important;
+}
+
+.postbox h3,
+.stuffbox h3,
+.postbox .hndle {
+    background-color: var(--skorar-header-dark) !important;
+    color: var(--skorar-white) !important;
+    border-bottom: 1px solid var(--skorar-dark-secondary) !important;
+}
+
+.postbox .inside {
+    background-color: var(--skorar-header-dark) !important;
+    color: var(--skorar-text-default) !important;
+}
+
+/* Forms and Inputs */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+textarea,
+select {
+    background-color: var(--skorar-dark-secondary) !important;
+    color: var(--skorar-white) !important;
+    border: 1px solid var(--skorar-light-gray) !important;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+textarea:focus {
+    background-color: var(--skorar-base-dark) !important;
+    border-color: var(--skorar-primary) !important;
+    box-shadow: 0 0 0 1px var(--skorar-primary) !important;
+}
+
+/* Buttons */
+.button,
+.button-primary,
+.button-secondary {
+    background-color: var(--skorar-primary) !important;
+    color: var(--skorar-white) !important;
+    border: 1px solid var(--skorar-primary) !important;
+}
+
+.button:hover,
+.button-primary:hover {
+    background-color: var(--skorar-secondary) !important;
+    color: var(--skorar-base-dark) !important;
+    border-color: var(--skorar-secondary) !important;
+}
+
+.button-secondary {
+    background-color: var(--skorar-dark-secondary) !important;
+    color: var(--skorar-white) !important;
+    border-color: var(--skorar-light-gray) !important;
+}
+
+.button-secondary:hover {
+    background-color: var(--skorar-primary) !important;
+    color: var(--skorar-white) !important;
+    border-color: var(--skorar-primary) !important;
+}
+
+/* Tables */
+.wp-list-table {
+    background-color: var(--skorar-header-dark) !important;
+    color: var(--skorar-text-default) !important;
+}
+
+.wp-list-table th {
+    background-color: var(--skorar-dark-secondary) !important;
+    color: var(--skorar-white) !important;
+    border-bottom: 1px solid var(--skorar-light-gray) !important;
+}
+
+.wp-list-table td {
+    border-bottom: 1px solid var(--skorar-dark-secondary) !important;
+}
+
+/* Table rows - override all alternating patterns */
+.wp-list-table tr,
+.striped>tbody>tr,
+ul.striped>li {
+    background-color: var(--skorar-header-dark) !important;
+}
+
+.wp-list-table .alternate,
+.alternate,
+.striped>tbody>:nth-child(odd),
+ul.striped>:nth-child(odd) {
+    background-color: #27272E !important;
+}
+
+.striped>tbody>:nth-child(even),
+ul.striped>:nth-child(even) {
+    background-color: var(--skorar-header-dark) !important;
+}
+
+.wp-list-table a {
+    color: var(--skorar-primary) !important;
+}
+
+.wp-list-table a:hover {
+    color: var(--skorar-secondary) !important;
+}
+
+/* Widefat table content */
+.widefat ol,
+.widefat p,
+.widefat ul,
+.widefat td,
+.widefat th {
+    color: var(--skorar-text-default) !important;
+}
+
+/* Dashboard Widgets */
+.dashboard-widget-holder {
+    background-color: var(--skorar-base-dark) !important;
+}
+
+#dashboard-widgets .postbox h3 {
+    background-color: var(--skorar-header-dark) !important;
+    color: var(--skorar-white) !important;
+}
+
+/* Welcome Panel */
+.welcome-panel .welcome-panel-column-container {
+    background: none !important;
+}
+
+/* Activity Widget Comments */
+#activity-widget #the-comment-list .comment-item {
+    background: none !important;
+}
+
+/* Dashboard Posts Lists */
+#future-posts li:nth-child(odd),
+#published-posts li:nth-child(odd) {
+    background: none !important;
+}
+
+/* Community Events */
+.community-events ul {
+    background: none !important;
+}
+
+/* Cards */
+.card {
+    background: none !important;
+}
+
+/* Importer Title */
+.importer-title {
+    color: var(--skorar-primary) !important;
+}
+
+/* Notices */
+.notice {
+    background-color: var(--skorar-header-dark) !important;
+    color: var(--skorar-text-default) !important;
+    border-left-color: var(--skorar-primary) !important;
+}
+
+.notice-success {
+    border-left-color: #46b450 !important;
+}
+
+.notice-warning {
+    border-left-color: var(--skorar-secondary) !important;
+}
+
+.notice-error {
+    border-left-color: var(--skorar-primary) !important;
+}
+
+/* Media Library */
+.media-frame {
+    background-color: var(--skorar-base-dark) !important;
+}
+
+.media-frame-menu {
+    background-color: var(--skorar-header-dark) !important;
+}
+
+.media-menu-item {
+    color: var(--skorar-light-gray) !important;
+}
+
+.media-menu-item:hover,
+.media-menu-item.active {
+    background-color: var(--skorar-primary) !important;
+    color: var(--skorar-white) !important;
+}
+
+.attachments-browser .media-toolbar {
+    background: none !important;
+}
+
+/* Plugin/Theme Editor */
+#template {
+    background-color: var(--skorar-dark-secondary) !important;
+    color: var(--skorar-text-default) !important;
+    border: 1px solid var(--skorar-light-gray) !important;
+}
+
+/* Gutenberg Editor Integration */
+.block-editor-page {
+    background-color: var(--skorar-base-dark) !important;
+}
+
+.edit-post-layout {
+    background-color: var(--skorar-base-dark) !important;
+}
+
+.edit-post-sidebar {
+    background-color: var(--skorar-header-dark) !important;
+    color: var(--skorar-text-default) !important;
+}
+
+/* Block Editor Sidebar Panels */
+.interface-interface-skeleton__sidebar,
+.edit-post-sidebar,
+.block-editor-block-inspector,
+.interface-complementary-area {
+    background-color: var(--skorar-header-dark) !important;
+    color: var(--skorar-white) !important;
+    border-left: 1px solid var(--skorar-dark-secondary) !important;
+}
+
+/* Sidebar Headers and Panels */
+.components-panel__header,
+.edit-post-sidebar__panel-tabs,
+.interface-complementary-area-header {
+    background-color: var(--skorar-header-dark) !important;
+    color: var(--skorar-white) !important;
+    border-bottom: 1px solid var(--skorar-dark-secondary) !important;
+}
+
+/* Sidebar Content Text */
+.edit-post-sidebar *,
+.interface-complementary-area *,
+.block-editor-block-inspector *,
+.components-panel__body *,
+.components-base-control__label,
+.components-text-control__input,
+.components-textarea-control__input {
+    color: var(--skorar-white) !important;
+}
+
+/* Interface Skeleton */
+.interface-interface-skeleton__footer {
+    background-color: var(--skorar-header-dark) !important;
+}
+
+.editor-header {
+    background-color: var(--skorar-header-dark) !important;
+}
+
+html :where(.editor-styles-wrapper) {
+    background-color: var(--skorar-base-dark) !important;
+}
+
+/* Settings Pages */
+.form-table th {
+    color: var(--skorar-white) !important;
+}
+
+.form-table td {
+    color: var(--skorar-text-default) !important;
+}
+
+/* Footer */
+#wpfooter p {
+    color: var(--skorar-light-gray) !important;
+}
+
+#wpfooter a {
+    color: var(--skorar-primary) !important;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--skorar-header-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--skorar-dark-secondary);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--skorar-primary);
+}

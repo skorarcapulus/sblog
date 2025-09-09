@@ -38,6 +38,55 @@ function skorar_theme_setup() {
     
     // Custom block patterns
     add_theme_support('core-block-patterns');
+    
+    // Add custom color palette for Gutenberg
+    add_theme_support('editor-color-palette', [
+        [
+            'name' => __('Primary Pink', 'skorar-theme'),
+            'slug' => 'primary-pink',
+            'color' => '#ff014f',
+        ],
+        [
+            'name' => __('Secondary Yellow', 'skorar-theme'),
+            'slug' => 'secondary-yellow',
+            'color' => '#FFDC60',
+        ],
+        [
+            'name' => __('Tertiary Pink', 'skorar-theme'),
+            'slug' => 'tertiary-pink',
+            'color' => '#FAB8C4',
+        ],
+        [
+            'name' => __('Dark Base', 'skorar-theme'),
+            'slug' => 'dark-base',
+            'color' => '#212428',
+        ],
+        [
+            'name' => __('Dark Header', 'skorar-theme'),
+            'slug' => 'dark-header',
+            'color' => '#1F2125',
+        ],
+        [
+            'name' => __('Dark Secondary', 'skorar-theme'),
+            'slug' => 'dark-secondary',
+            'color' => '#27272E',
+        ],
+        [
+            'name' => __('Text Default', 'skorar-theme'),
+            'slug' => 'text-default',
+            'color' => '#C4CFDE',
+        ],
+        [
+            'name' => __('White', 'skorar-theme'),
+            'slug' => 'white',
+            'color' => '#ffffff',
+        ],
+        [
+            'name' => __('Light Gray', 'skorar-theme'),
+            'slug' => 'light-gray',
+            'color' => '#abb8c3',
+        ],
+    ]);
 
     // Register navigation menu
     register_nav_menus([
@@ -118,15 +167,45 @@ function skorar_customize_register($wp_customize) {
         'priority' => 30,
     ]);
 
-    // Add a setting for accent color
-    $wp_customize->add_setting('skorar_accent_color', [
-        'default' => '#0073aa',
+    // Color scheme settings
+    $wp_customize->add_setting('skorar_primary_color', [
+        'default' => '#ff014f',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ]);
+    
+    $wp_customize->add_setting('skorar_secondary_color', [
+        'default' => '#FFDC60',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ]);
+    
+    $wp_customize->add_setting('skorar_base_dark', [
+        'default' => '#212428',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ]);
+    
+    $wp_customize->add_setting('skorar_header_dark', [
+        'default' => '#1F2125',
         'sanitize_callback' => 'sanitize_hex_color',
     ]);
 
-    // Add control for accent color
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'skorar_accent_color', [
-        'label' => __('Accent Color', 'skorar-theme'),
+    // Add color controls
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'skorar_primary_color', [
+        'label' => __('Primary Color (Pink)', 'skorar-theme'),
+        'section' => 'skorar_theme_options',
+    ]));
+    
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'skorar_secondary_color', [
+        'label' => __('Secondary Color (Yellow)', 'skorar-theme'),
+        'section' => 'skorar_theme_options',
+    ]));
+    
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'skorar_base_dark', [
+        'label' => __('Base Dark Color', 'skorar-theme'),
+        'section' => 'skorar_theme_options',
+    ]));
+    
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'skorar_header_dark', [
+        'label' => __('Header Dark Color', 'skorar-theme'),
         'section' => 'skorar_theme_options',
     ]));
 }
@@ -136,11 +215,50 @@ add_action('customize_register', 'skorar_customize_register');
  * Custom CSS for accent color
  */
 function skorar_custom_css() {
-    $accent_color = get_theme_mod('skorar_accent_color', '#0073aa');
+    $primary_color = get_theme_mod('skorar_primary_color', '#ff014f');
+    $secondary_color = get_theme_mod('skorar_secondary_color', '#FFDC60');
+    $base_dark = get_theme_mod('skorar_base_dark', '#212428');
+    $header_dark = get_theme_mod('skorar_header_dark', '#1F2125');
     
     echo "<style type='text/css'>
-        .post-title a:hover { color: {$accent_color}; }
-        .read-more { color: {$accent_color}; }
+        :root {
+            --skorar-primary: {$primary_color};
+            --skorar-secondary: {$secondary_color};
+            --skorar-tertiary: #FAB8C4;
+            --skorar-base-dark: {$base_dark};
+            --skorar-header-dark: {$header_dark};
+            --skorar-dark-secondary: #27272E;
+            --skorar-text-default: #C4CFDE;
+            --skorar-white: #ffffff;
+            --skorar-light-gray: #abb8c3;
+        }
+        
+        body {
+            background-color: var(--skorar-base-dark);
+            color: var(--skorar-text-default);
+        }
+        
+        .site-header {
+            background-color: var(--skorar-header-dark);
+        }
+        
+        .post-title a:hover,
+        .read-more,
+        a:hover {
+            color: var(--skorar-primary);
+        }
+        
+        .button,
+        .wp-block-button__link {
+            background-color: var(--skorar-primary);
+            color: var(--skorar-white);
+        }
+        
+        .button:hover,
+        .wp-block-button__link:hover {
+            background-color: var(--skorar-secondary);
+            color: var(--skorar-base-dark);
+        }
     </style>";
 }
 add_action('wp_head', 'skorar_custom_css');
@@ -156,18 +274,109 @@ function skorar_register_block_patterns() {
 add_action('init', 'skorar_register_block_patterns');
 
 /**
+ * Enable wide/full alignment for additional blocks
+ */
+function skorar_enable_block_alignments() {
+    // Enable wide/full alignment for paragraph blocks
+    add_filter('block_editor_settings_all', function($settings) {
+        if (!isset($settings['alignWide'])) {
+            $settings['alignWide'] = true;
+        }
+        return $settings;
+    });
+}
+add_action('init', 'skorar_enable_block_alignments');
+
+/**
  * Enqueue block editor assets
  */
 function skorar_block_editor_assets() {
-    // You can add custom JavaScript for the block editor here
+    // Enable alignment for paragraph and other blocks
     wp_enqueue_script(
         'skorar-block-editor',
         get_template_directory_uri() . '/assets/js/block-editor.js',
         ['wp-blocks', 'wp-dom-ready', 'wp-edit-post'],
         wp_get_theme()->get('Version')
     );
+    
+    // Content Block
+    wp_enqueue_script(
+        'skorar-content-block',
+        get_template_directory_uri() . '/blocks/content-block/index.js',
+        ['wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n'],
+        wp_get_theme()->get('Version')
+    );
+    
+    // Content Block Editor Styles
+    wp_enqueue_style(
+        'skorar-content-block-editor',
+        get_template_directory_uri() . '/blocks/content-block/editor.css',
+        ['wp-edit-blocks'],
+        wp_get_theme()->get('Version')
+    );
 }
 add_action('enqueue_block_editor_assets', 'skorar_block_editor_assets');
+
+/**
+ * Add editor color palette support
+ */
+function skorar_add_editor_color_palette() {
+    add_theme_support('editor-color-palette', [
+        [
+            'name' => __('Primary Pink', 'skorar-theme'),
+            'slug' => 'primary-pink',
+            'color' => '#ff014f',
+        ],
+        [
+            'name' => __('Secondary Yellow', 'skorar-theme'),
+            'slug' => 'secondary-yellow',
+            'color' => '#FFDC60',
+        ],
+        [
+            'name' => __('Text Default', 'skorar-theme'),
+            'slug' => 'text-default',
+            'color' => '#C4CFDE',
+        ],
+        [
+            'name' => __('White', 'skorar-theme'),
+            'slug' => 'white',
+            'color' => '#ffffff',
+        ],
+        [
+            'name' => __('Dark Base', 'skorar-theme'),
+            'slug' => 'dark-base',
+            'color' => '#212428',
+        ],
+    ]);
+}
+add_action('after_setup_theme', 'skorar_add_editor_color_palette');
+
+/**
+ * Enqueue frontend block assets
+ */
+function skorar_block_assets() {
+    // Content Block Frontend Styles
+    wp_enqueue_style(
+        'skorar-content-block-style',
+        get_template_directory_uri() . '/blocks/content-block/style.css',
+        [],
+        wp_get_theme()->get('Version')
+    );
+}
+add_action('wp_enqueue_scripts', 'skorar_block_assets');
+
+/**
+ * Enqueue admin theme styles
+ */
+function skorar_admin_theme_styles() {
+    wp_enqueue_style(
+        'skorar-admin-theme',
+        get_template_directory_uri() . '/assets/css/admin-theme.css',
+        [],
+        wp_get_theme()->get('Version')
+    );
+}
+add_action('admin_enqueue_scripts', 'skorar_admin_theme_styles');
 
 /**
  * Development helpers

@@ -3,12 +3,33 @@
  * This file is loaded in the WordPress admin when editing posts
  */
 
-/* Base editor styles */
+/* CSS Variables matching frontend theme */
+:root {
+  --skorar-primary: #ff014f;
+  --skorar-secondary: #FFDC60;
+  --skorar-tertiary: #FAB8C4;
+  --skorar-base-dark: #212428;
+  --skorar-header-dark: #1F2125;
+  --skorar-dark-secondary: #27272E;
+  --skorar-text-default: #C4CFDE;
+  --skorar-white: #ffffff;
+  --skorar-light-gray: #abb8c3;
+}
+
+/* Base editor styles with dark theme */
 .block-editor-writing-flow {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 18px;
   line-height: 1.6;
-  color: #333;
+  color: var(--skorar-text-default);
+}
+
+/* Make editor background dark */
+.block-editor-writing-flow,
+.block-editor-block-list__layout,
+.block-editor__container {
+  background-color: var(--skorar-base-dark);
+  color: var(--skorar-text-default);
 }
 
 /* Editor width to match theme */
@@ -28,7 +49,18 @@
 .editor-post-title__input {
   font-size: 2rem;
   font-weight: 700;
-  color: #333;
+  color: var(--skorar-white);
+  background-color: var(--skorar-base-dark);
+}
+
+.block-editor-block-list__block h1,
+.block-editor-block-list__block h2,
+.block-editor-block-list__block h3,
+.block-editor-block-list__block h4,
+.block-editor-block-list__block h5,
+.block-editor-block-list__block h6 {
+  color: var(--skorar-white);
+  background-color: transparent;
 }
 
 .block-editor-block-list__block h1 {
@@ -46,31 +78,52 @@
   line-height: 1.4;
 }
 
+/* Paragraph blocks */
+.block-editor-block-list__block p {
+  color: var(--skorar-text-default);
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
 /* Buttons in editor */
 .wp-block-button__link {
-  background-color: #0073aa;
-  color: white;
+  background-color: var(--skorar-primary);
+  color: var(--skorar-white);
   padding: 0.75rem 1.5rem;
   border-radius: 4px;
   font-weight: 600;
   text-decoration: none;
+  border: none;
+  transition: all 0.2s;
+}
+
+.wp-block-button__link:hover {
+  background-color: var(--skorar-secondary);
+  color: var(--skorar-base-dark);
 }
 
 /* Quote blocks */
 .wp-block-quote {
-  border-left: 4px solid #0073aa;
+  border-left: 4px solid var(--skorar-primary);
   padding-left: 1rem;
   font-style: italic;
-  color: #666;
+  color: var(--skorar-text-default);
+  background-color: transparent;
+}
+
+.wp-block-quote cite {
+  color: var(--skorar-light-gray);
+  font-size: 0.9rem;
 }
 
 /* Code blocks */
 .wp-block-code {
-  background: #f8f9fa;
-  border: 1px solid #eee;
+  background: var(--skorar-header-dark);
+  border: 1px solid var(--skorar-dark-secondary);
   padding: 1rem;
   border-radius: 4px;
   font-family: 'Monaco', 'Menlo', monospace;
+  color: var(--skorar-text-default);
 }
 
 /* Lists */

@@ -6,10 +6,25 @@
 wp.domReady(() => {
     console.log('Skorar Theme: Block editor loaded');
     
-    // You can add custom block editor functionality here
-    // For example: disable certain blocks, add custom styles, etc.
+    // Enable wide/full alignment for heading blocks
+    wp.hooks.addFilter(
+        'blocks.registerBlockType',
+        'skorar-theme/enable-alignment',
+        (settings, name) => {
+            // Enable alignment for heading blocks
+            if (name === 'core/heading') {
+                settings.supports = {
+                    ...settings.supports,
+                    align: ['wide', 'full'],
+                    alignWide: true,
+                };
+            }
+            
+            return settings;
+        }
+    );
     
-    // Example: Add a custom style variation to the button block
+    // Add custom button style variation
     wp.blocks.registerBlockStyle('core/button', {
         name: 'skorar-outline',
         label: 'Outline',
@@ -19,7 +34,4 @@ wp.domReady(() => {
             color: 'var(--wp--preset--color--primary)'
         }
     });
-    
-    // Example: Unregister a block style you don't want
-    // wp.blocks.unregisterBlockStyle('core/button', 'outline');
 });

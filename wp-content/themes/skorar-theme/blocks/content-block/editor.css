@@ -1,0 +1,68 @@
+/**
+ * Editor styles for Content Block
+ */
+
+.wp-block-skorar-theme-content-block {
+    padding: 1rem;
+    border: 1px dashed var(--skorar-dark-secondary, #27272E);
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    background-color: var(--skorar-base-dark, #212428);
+}
+
+.wp-block-skorar-theme-content-block .content-block__header {
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    color: #C4CFDE;
+}
+
+.wp-block-skorar-theme-content-block .content-block__header:empty::before {
+    content: attr(placeholder);
+    color: #999;
+    opacity: 0.6;
+}
+
+.wp-block-skorar-theme-content-block .content-block__subheader {
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+    opacity: 1;
+    color: #F9004D;
+}
+
+.wp-block-skorar-theme-content-block .content-block__subheader:empty::before {
+    content: attr(placeholder);
+    color: #999;
+    opacity: 0.6;
+}
+
+.wp-block-skorar-theme-content-block .content-block__content {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--skorar-text-default, #C4CFDE);
+}
+
+.wp-block-skorar-theme-content-block .content-block__content:empty::before {
+    content: attr(placeholder);
+    color: #999;
+    opacity: 0.6;
+}
+
+.wp-block-skorar-theme-content-block .content-block__content p {
+    margin-bottom: 1rem;
+}
+
+.wp-block-skorar-theme-content-block .content-block__content p:last-child {
+    margin-bottom: 0;
+}
+
+/* Editor alignment preview */
+.wp-block-skorar-theme-content-block[data-align="wide"] {
+    max-width: 1200px;
+}
+
+.wp-block-skorar-theme-content-block[data-align="full"] {
+    max-width: none;
+}

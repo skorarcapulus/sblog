@@ -1,0 +1,90 @@
+/**
+ * Frontend styles for Content Block
+ */
+
+.content-block {
+    margin-bottom: 2rem;
+}
+
+.content-block__header {
+    color: #C4CFDE;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.content-block__subheader {
+    color: #F9004D;
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+    opacity: 1;
+}
+
+.content-block__content {
+    color: var(--skorar-text-default);
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+.content-block__content p {
+    margin-bottom: 1rem;
+}
+
+.content-block__content p:last-child {
+    margin-bottom: 0;
+}
+
+/* Alignment classes */
+.content-block.has-text-align-left {
+    text-align: left;
+}
+
+.content-block.has-text-align-center {
+    text-align: center;
+}
+
+.content-block.has-text-align-right {
+    text-align: right;
+}
+
+/* Wide and Full Width Support */
+.content-block.alignwide {
+    max-width: 1400px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+}
+
+.content-block.alignfull {
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding: 2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .content-block.alignfull {
+        margin-left: -20px;
+        margin-right: -20px;
+        width: calc(100% + 40px);
+        max-width: calc(100% + 40px);
+        padding: 1rem;
+    }
+    
+    .content-block__header {
+        font-size: 1.8rem;
+    }
+    
+    .content-block__subheader {
+        font-size: 1.1rem;
+    }
+    
+    .content-block__content {
+        font-size: 1rem;
+    }
+}

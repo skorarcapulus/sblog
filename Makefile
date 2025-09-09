@@ -3,7 +3,7 @@ SHELL := /bin/bash
 .DEFAULT_GOAL := help
 
 # Core commands
-.PHONY: help up down dev restart build install fresh reset status logs shell wp cache
+.PHONY: help up down dev restart build install fresh reset status logs shell wp cache clean
 
 help: ## Show available commands
 	@echo "WordPress Development Environment"
@@ -22,7 +22,7 @@ dev: ## Start development stack (with Node.js tools)
 	@echo "   Vite dev:  http://localhost:3000"
 
 down: ## Stop and remove all containers
-	@docker compose down -v
+	@docker compose down
 
 restart: ## Restart all containers
 	@docker compose restart
@@ -64,6 +64,10 @@ install: ## Install WordPress
 fresh: ## Fresh installation (rebuild everything)
 	@make down build dev install
 	@echo "✅ Fresh WordPress development environment ready!"
+
+clean: ## Stop containers and remove volumes (data will be lost)
+	@docker compose down -v
+	@echo "🧹 Containers stopped and volumes removed"
 
 reset: ## Nuclear option - remove everything
 	@docker compose down -v
